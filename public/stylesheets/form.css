@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+}
+#error-message {
+    color: red;
+}
+#details {
+    font-size: 18px;
+}
+#price {
+    font-size: 24px;
+    font-weight: bold;
+}

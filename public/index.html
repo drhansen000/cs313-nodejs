@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/stylesheets/form.css" />
+    <title>UPS Mock-up Site | Home</title>
+</head>
+<body>
+    <h1>UPS Mock-up Site</h1>
+    <h2>Please fill out the form and submit your purchase</h2>
+    <p id="error-message"></p>
+    <form action="/result" onsubmit="return checkWeight()" method="get">
+        <label for="weight">Weight(oz): </label>
+        <input type="number" id="weight" name="weight" value="0" step="0.1"/>
+        <label for="mail-type">Mail Type: </label>
+        <select id="mail-type" name="mail-type">
+            <option value="stamped">Letter (Stamped)</option>
+            <option value="metered">Letter (Metered)</option>
+            <option value="large">Large Envelope</option>
+            <option value="first-class">First Class Package Service</option>
+        </select>
+        <input type="submit" value="Check Out"/>
+    </form>
+</body>
+</html>
+
+<script>
+    function checkWeight() {
+        var weight   = document.getElementById('weight').value;
+        var mailType = document.getElementById('mail-type').value;
+
+        if (weight <= 0) {
+            document.getElementById('error-message').innerHTML = 'Weight cannot be 0 oz or below!';
+            return false;
+        } else if (weight <= weightLimit(mailType)) {
+
+        } else {
+            document.getElementById('error-message').innerHTML = 'Weight is too heavy for mail type!';
+            return false;
+        }
+    }
+
+    function weightLimit(mailType) {
+        switch (mailType) {
+            case 'stamped':
+                return 3.5;
+                break;
+            case 'metered':
+                return 3.5;
+                break;
+            case 'large':
+                return 13;
+                break;
+            case 'first-class':
+                return 13;
+                break;
+        }
+    }
+</script>
